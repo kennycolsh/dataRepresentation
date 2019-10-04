@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>View Cars</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Cars</h1>
+    <div>
+        <button class="btn btn-success">Create </button>
+    </div>
+    <div>
+        <table  class="table table-condensed table-bordered table-striped table-hover" style="font-size: 90%; width:100%; font-family: narrow;padding:15px;">
+            <tr>
+                <th>Reg</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>191 M0 123</td>
+                <td>Ford</td>
+                <td>Modeo</td>
+                <td>25,000</td>
+                <td><button class="btn btn-primary">Update</button></td>
+                <td><button class="btn btn-warning"> Delete</button></td>
+            </tr>
+            <tr>
+                <td>181 WH 123</td>
+                <td>Kia</td>
+                <td>Sport</td>
+                <td>23,000</td>
+                <td><button class="btn btn-primary">Update</button></td>
+                <td><button class="btn btn-warning"> Delete</button></td>
+            </tr>
+            <tr>
+                <td>171 GW 123</td>
+                <td>VW</td>
+                <td>Passat</td>
+                <td>35,000</td>
+                <td><button class="btn btn-primary">Update</button></td>
+                <td><button class="btn btn-warning"> Delete</button></td>
+            </tr>
+        </table>
+    </div>
+    <form>
+        <h2><span>Create a</span> <span>Update this</span> Car</h2>
+        <hr />
+        <div class="form-group col-sm-6">
+            <label>Reg</label>
+
+            <input type="text" class="form-control" id="reg" placeholder="131-wh-2020">
+        </div>
+        <div class="form-group col-sm-6">
+            <label>Make</label>
+            <select class="form-control" id="make">
+                <option value="Ford">Ford</option>
+                <option value="Fiat">Kia</option>
+                <option value="Nissan">VW</option>
+            </select>
+        </div>
+        
+        <div class="form-group col-sm-6">
+            <label for="Model">Model</label>
+            <input type="text" class="form-control" id="Model" >
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="Model">Price</label>
+            <input type="number" class="form-control" id="Price">
+        </div>
+    </form>
+   
+    <div>
+        <span><button class="btn btn-success">Create</button></span>
+        <span><button class="btn btn-primary">Update</button></span>
+
+    </div>
+</body>
+</html>
