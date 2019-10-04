@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<library_Data>
+  <catalogues>
+    <technical>
+       <Book>
+        <ISBN>1111111</ISBN>
+        <title>title 1</title>
+        <author>
+          Joe 1
+        </author>
+      </Book>
+      <Book>
+        <ISBN>444444</ISBN>
+        <title>title 2</title>
+        <author>
+          Joe 2
+        </author>
+      </Book>
+    </technical>
+    <cookery>
+      <Book>
+        <ISBN>333333</ISBN>
+        <title>title 3</title>
+        <author>
+          Joe 3
+        </author>
+      </Book>
+      <Book>
+        <ISBN>2222222</ISBN>
+        <title>title 4</title>
+        <author>
+          Joe 4
+        </author>
+      </Book>
+    </cookery>
+  </catalogues>
+ 
+</library_Data>
