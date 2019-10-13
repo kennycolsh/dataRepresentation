@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<input id="name"type="text"  value="enter name" />
+   
+    <br />
+    <button onclick="buttonClicked()">click me</button><br />
+        <div id="output">output will go here</div>
+
+            <script>
+            function buttonClicked(){
+                var output= document.getElementById('name').value
+                document.getElementById('output').innerText = output
+            }
+            
+            </script>
+
+</body>
+</html>
