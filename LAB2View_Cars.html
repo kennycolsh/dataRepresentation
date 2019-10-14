@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>View Cars</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Cars</h1>
+    <div>
+        <button id="showCreateButton" onclick="showCreate()" class="btn btn-success">Create </button>
+    </div>
+    <div>
+        <table id="carTable" class="table table-condensed table-bordered table-striped table-hover" style="font-size: 90%;  font-family: narrow;padding:15px;">
+            <tbody style="font-size: 90%; ">
+                <tr >
+                    <th>Reg</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Price</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tr id="191 M0 123">
+                    <td>191 M0 123</td>
+                    <td>Ford</td>
+                    <td>Modeo</td>
+                    <td>25,000</td>
+                    <td><button onclick="showUpdate(this)" class="btn btn-primary">Update</button></td>
+                    <td><button onclick="doDelete(this)" class="btn btn-warning"> Delete</button></td>
+                </tr>
+                <tr id="181 WH 123">
+                    <td>181 WH 123</td>
+                    <td>Kia</td>
+                    <td>Sport</td>
+                    <td>23,000</td>
+                    <td><button onclick="showUpdate(this)" class="btn btn-primary">Update</button></td>
+                    <td><button onclick="doDelete(this)" class="btn btn-warning"> Delete</button></td>
+                </tr>
+                <tr id="181 WH 123">
+                    <td>171 GW 123</td>
+                    <td>VW</td>
+                    <td>Passat</td>
+                    <td>35,000</td>
+                    <td><button onclick="showUpdate(this)" class="btn btn-primary">Update</button></td>
+                    <td><button onclick="doDelete(this)" class="btn btn-warning"> Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id='createUpdateForm' style="display: none">
+        <form>
+            <span id="createLabel">Create a</span> <span id="updateLabel">update</span> Car
+            <hr />
+            <div class="form-group col-sm-6">
+                <label>Reg</label>
+
+                <input type="text" class="form-control" name="reg" >
+            </div>
+            <div class="form-group col-sm-6">
+                <label>Make</label>
+                <select class="form-control" name="make">
+                    <option value="Ford">Ford</option>
+                    <option value="Fiat">Kia</option>
+                    <option value="Nissan">VW</option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label for="model">Model</label>
+                <input type="text" class="form-control" name="model">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" name="price">
+            </div>
+        
+        </form>
+        <div>
+            <span><button id="doCreateButton" onclick="doCreate()" class="btn btn-success">Create</button></span>
+            <span><button id="doUpdateButton" onclick="doUpdate()" class="btn btn-primary">Update</button></span>
+
+        </div>
+    </div>
+ 
+    
+</body>
+</html>
+<script>
+
+    function doUpdate() {
+        var car = getCarFromForm();
+        var rowElement = document.getElementById(car.reg)
+        setCarInRow(rowElement, car)
+
+        clearForm()
+        showViewAll()
+    }
+
+   //get car info from tr
+    function getCarFromRow(rowElement) {
+        var car = {}
+        debugger;
+        car.reg = rowElement.cells[0].firstChild.textContent
+        car.make = rowElement.cells[1].firstChild.textContent
+        car.model = rowElement.cells[2].firstChild.textContent
+        car.price = rowElement.cells[3].firstChild.textContent
+        return car
+    }
+   //fill in the form
+    function populateFormWithCar(car) {
+        debugger;
+        var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="reg"]').disabled = true
+
+        form.querySelector('input[name="reg"]').value = car.reg
+        form.querySelector('select[name="make"]').value = car.make
+        form.querySelector('input[name="model"]').value = car.model
+        form.querySelector('input[name="price"]').value = parseInt(car.price)
+    }
+
+      //Delete function    
+    function doDelete(r) {
+        var tableElement = document.getElementById('carTable')
+        var index = r.parentNode.parentNode.rowIndex;
+        tableElement.deleteRow(index);
+    }
+    ////update function
+    function showUpdate(buttonElement) {
+     
+        document.getElementById('showCreateButton').style.display = "none"
+        document.getElementById('carTable').style.display = "none"
+        document.getElementById('createUpdateForm').style.display = "block"
+        document.getElementById('createLabel').style.display = "none"
+        document.getElementById('updateLabel').style.display = "inline"
+        document.getElementById('doCreateButton').style.display = "none"
+        document.getElementById('doUpdateButton').style.display = "block"
+        
+        var rowElement = buttonElement.parentNode.parentNode
+        // these is a way of finding the closest <tr> which would safer, closest()
+
+        var car = getCarFromRow(rowElement)
+        populateFormWithCar(car)
+    }
+    function getCarFromForm() {
+        var form = document.getElementById('createUpdateForm')
+        var car = {}
+        car.reg = form.querySelector('input[name="reg"]').value
+        car.make = form.querySelector('select[name="make"]').value
+        car.model = form.querySelector('input[name="model"]').value
+        car.price = form.querySelector('input[name="price"]').value
+        console.log(JSON.stringify(car))
+        return car
+    }
+    function setCarInRow(rowElement, car) {
+        rowElement.cells[0].firstChild.textContent = car.reg
+        rowElement.cells[1].firstChild.textContent = car.make
+        rowElement.cells[2].firstChild.textContent = car.model
+        rowElement.cells[3].firstChild.textContent = car.price
+    }
+
+
+
+   // Hide/show the create form and table
+    function showCreate() {
+        document.getElementById('showCreateButton').style.display = "none"
+        document.getElementById('carTable').style.display = "none"
+        document.getElementById('createUpdateForm').style.display = "block"
+        document.getElementById('createLabel').style.display = "inline"
+        document.getElementById('updateLabel').style.display = "none"
+
+        document.getElementById('doCreateButton').style.display = "block"
+        document.getElementById('doUpdateButton').style.display = "none"
+
+    }
+    function showViewAll() {
+        document.getElementById('showCreateButton').style.display = "block"
+        document.getElementById('carTable').style.display = "block"
+        document.getElementById('createUpdateForm').style.display = "none"
+        document.getElementById('createLabel').style.display = "inline"
+        document.getElementById('updateLabel').style.display = "block"
+
+        document.getElementById('doCreateButton').style.display = "none"
+        document.getElementById('doUpdateButton').style.display = "block"
+
+    }
+
+    //create function
+    function doCreate() {
+       
+        var form = document.getElementById('createUpdateForm')
+        
+        var car = {}
+        car.reg = form.querySelector('input[name="reg"]').value
+        car.make = form.querySelector('select[name="make"]').value
+        car.model = form.querySelector('input[name="model"]').value
+        car.price = form.querySelector('input[name="price"]').value
+       
+        if (car.reg != '') {
+            addCarToTable(car)
+        }
+        console.log(JSON.stringify(car))
+        
+        clearForm()
+        showViewAll()
+       // console.log("Testing create")
+
+    }
+    function addCarToTable(car) {
+       // alert(car.price)
+       // debugger;
+        var tableElement = document.getElementById('carTable')
+        var rowElement = tableElement.insertRow(-1)
+        // set attribure here
+        var cellElement = rowElement.insertCell(0);
+        cellElement.innerHTML = car.reg
+
+        cellElement = rowElement.insertCell(1);
+        cellElement.innerHTML = car.make
+
+        cellElement = rowElement.insertCell(2);
+        cellElement.innerHTML = car.model
+
+        cellElement = rowElement.insertCell(3);
+        cellElement.innerHTML = car.price
+
+        cellElement = rowElement.insertCell(4);
+        cellElement.innerHTML = '<button onclick="showUpdate(this)" class="btn btn-primary">Update</button>'
+
+        cellElement = rowElement.insertCell(5);
+        cellElement.innerHTML = '<button onclick="doDelete(this)" class="btn btn-warning"> Delete</button>'
+    }
+
+
+
+    //clear the form
+    function clearForm() {
+        var form = document.getElementById('createUpdateForm')
+
+        form.querySelector('input[name="reg"]').disabled = false
+        form.querySelector('input[name="reg"]').value = ''
+        form.querySelector('select[name="make"]').value = ''
+        form.querySelector('input[name="model"]').value = ''
+        form.querySelector('input[name="price"]').value = ''
+    }
+
+        
+</script>
