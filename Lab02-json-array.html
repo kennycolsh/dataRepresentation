@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Lab02</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <button onclick="displayJSON()">go</button>
+</body>
+</html>
+<script>
+    function displayJSON() {
+       //json array
+        var jsonString = '{"employees": [{"firstName": "John", "lastName": "Doe"},{ "firstName": "Anna","lastName": "Smith"},{"firstName": "Peter","lastName": "Jones"}]}';
+        var obj = JSON.parse(jsonString);
+        var employees = obj.employees;
+        for (employee of employees) {
+            console.log(employee.firstName);
+        }
+        //using the foreach
+        employees.forEach(employee => {
+            console.log(employee.firstName + ", " + employee.lastName);
+        })
+    }
+</script>
