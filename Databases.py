@@ -10,7 +10,7 @@ class CarsDAO:
 
     def create(self,values):
         cursor = self.db.cursor()
-        sql="insert into cars (reg,make,model,price,totalvotes) values (%s,%s,%s,%s,%s)"
+        sql="insert into cars (reg, make, model, price, totalvotes) values (%s,%s,%s,%s,%s)"
         cursor.execute(sql, values)
         self.db.commit()
         return cursor.lastrowid
@@ -18,7 +18,7 @@ class CarsDAO:
 
     def update(self,values):
         cursor = self.db.cursor()
-        sql="update cars set reg =%s,make =%s,model =%s,price =%s,totalvotes =%s"
+        sql="update cars set reg =%s,make =%s,model =%s,price =%s,totalvotes =%s where id = %s"
         cursor.execute(sql, values)
         self.db.commit()
 
